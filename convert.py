@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 from pedmap_to_hdf5 import ConvertPEDMAP
-import hdf5_to_pedmap
+from hdf5_to_pedmap import ConvertHDF5
 
 
 def initialize_graphics():
@@ -24,11 +24,11 @@ def check_args():
     return args_dict
 
 
-def conversion(dict):
-    if "to_prefix" in dict:
-        converter = ConvertPEDMAP(dict)
-    elif "from_file" in dict:
-        print "hdf5_to_pedmap"
+def conversion(d):
+    if "to_prefix" in d:
+        converter = ConvertPEDMAP(d)
+    elif "from_file" in d:
+        converter = ConvertHDF5(d)
 
 
 if __name__ == "__main__":
