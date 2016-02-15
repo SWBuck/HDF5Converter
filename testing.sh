@@ -1,3 +1,6 @@
-python convert.py -t example -o testing_out
-python convert.py -f testing_out.h5 -o backout
+python convert.py -d ExampleData -o testing_out
+python convert.py -f testing_out.h5
+ls
 rm testing_out.h5
+rm example.map
+rm example.ped
