@@ -8,13 +8,13 @@ class HDF5:
     def __init__(self, name):
         self.h5_file = open_file(name, mode="r")
 
-    def convert(self, dir):
-        if not path.exists(dir):
-            mkdir(dir)
+    def convert(self, directory):
+        if not path.exists(directory):
+            mkdir(directory)
         for x in self.h5_file.root:
             prefix = x._v_name
             for y in x:
-                x = dir+prefix+"."+y._v_name
+                x = directory+prefix+"."+y._v_name
                 if x.lower().endswith(".map"):
                     m = MAP(x)
                     m.write(y)

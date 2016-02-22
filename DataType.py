@@ -2,12 +2,12 @@ from os import path
 
 
 class DataType:
-    def __init__(self, file_path, type):
+    def __init__(self, file_path, t):
         self.input = file_path
         head, tail = path.split(self.input)
         self.file_name = tail
         self.file_prefix = path.splitext(self.file_name)[0]
-        self.type = type
+        self.type = t
 
     def read(self):
         with open(self.input) as f:
@@ -24,8 +24,8 @@ class DataType:
             for r in table:
                 s = ""
                 for each in a:
-                    s += r[each[1]]+"\t"
-                s.rstrip()
+                    s += r[each[0]]+"\t"
+                s.strip()
                 f.write(s+"\n")
 
     def formatted_line(self, split_line):
@@ -33,6 +33,7 @@ class DataType:
         for k in self.data_format.keys():
             data = split_line[self.data_format[k][0]]
             line_dict[k] = data
+        print line_dict
         return line_dict
 
     def create_table(self, h5_file):

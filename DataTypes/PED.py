@@ -6,7 +6,7 @@ class PED(DataType):
     def __init__(self, p, writing=False):
         self.input = p
         self.data_format = {"family": (0, StringCol(16)), "sample": (1, StringCol(16)), "paternal": (2, StringCol(16)),
-                                "maternal": (3, StringCol(16)), "sex": (4, StringCol(4)), "affection": (5, StringCol(16))}
+                            "maternal": (3, StringCol(16)), "sex": (4, StringCol(4)), "affection": (5, StringCol(16))}
         if not writing:
             self.geno_length = self.get_geno_length()
             self.data_format["genotype"] = (6, StringCol(self.geno_length))
@@ -29,12 +29,13 @@ class PED(DataType):
             for r in table:
                 s = ""
                 geno = " ".join(r["genotype"])
+                print geno
                 for each in a:
                     if not each[0] == "genotype":
-                        s += r[each[1]]+"\t"
+                        s += r[each[0]]+"\t"
                     else:
-                        s += geno + "\t"
-                s.rstrip()
+                        s += geno
+                s.strip()
                 f.write(s+"\n")
 
     def formatted_line(self, split_line):
