@@ -20,10 +20,14 @@ class Convert:
         Starts the appropriate conversion function depending on the mode passed through the arguments.
 
         """
+        if self.args["verbose"]:
+            print "Starting conversion process"
         if self.args["mode"] == "to":
             self.convert_to()
         elif self.args["mode"] == "from":
             self.convert_from()
+        if self.args["verbose"]:
+            print "Conversion process complete"
 
     def convert_to(self):
         """
@@ -41,15 +45,15 @@ class Convert:
             if f.lower().endswith(".map"):
                 if "map" not in dtypes:
                     dtypes["map"] = []
-                    dtypes["map"].append(MAP(input_directory+f))
+                    dtypes["map"].append(MAP(input_directory+f, verbose))
                 else:
-                    dtypes["map"].append(MAP(input_directory+f))
+                    dtypes["map"].append(MAP(input_directory+f, verbose))
             elif f.lower().endswith(".ped"):
                 if "ped" not in dtypes:
                     dtypes["ped"] = []
-                    dtypes["ped"].append(PED(input_directory+f))
+                    dtypes["ped"].append(PED(input_directory+f), verbose=verbose)
                 else:
-                    dtypes["ped"].append(PED(input_directory+f))
+                    dtypes["ped"].append(PED(input_directory+f), verbose=verbose)
         h5_file = open_file(output_name+".h5", mode="w", title=output_name)
         for key in dtypes:
             for a in dtypes[key]:
@@ -64,7 +68,7 @@ class Convert:
         input_file = self.args["hdf"]
         output_directory = self.args["dir"]
         verbose = self.args["verbose"]
-        h = HDF5(input_file)
+        h = HDF5(input_file, verbose)
         h.convert(output_directory)
 
 

@@ -2,7 +2,7 @@ from os import path
 
 
 class DataType:
-    def __init__(self, file_path, t):
+    def __init__(self, file_path, t, verbose=False):
         """
         Creates a new instance of DataType.
 
@@ -14,6 +14,7 @@ class DataType:
         self.file_name = tail
         self.file_prefix = path.splitext(self.file_name)[0]
         self.type = t
+        self.verbose = verbose
 
     def read(self):
         """
@@ -21,6 +22,8 @@ class DataType:
 
         :return: Each line formatted into a dictionary
         """
+        if self.verbose:
+            print "Reading", self.file_name
         with open(self.input) as f:
             for line in f:
                 line = line.rstrip().split()
@@ -32,6 +35,8 @@ class DataType:
 
         :param table: The table containing the data
         """
+        if self.verbose:
+            print "Writing", self.input
         f = []
         for k in self.data_format:
             f.append((k, self.data_format[k][0]))
@@ -64,6 +69,8 @@ class DataType:
 
         :param h5_file: file to add the table to
         """
+        if self.verbose:
+            print "Creating and populating", self.file_prefix, self.type, "table"
         group_exists = False
         for x in h5_file:
             if x._v_name == self.file_prefix:

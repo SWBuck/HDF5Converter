@@ -3,7 +3,7 @@ from tables import StringCol
 
 
 class PED(DataType):
-    def __init__(self, p, writing=False):
+    def __init__(self, p, writing=False, verbose=False):
         """
         Instantiates a PED object corresponding to MAP files.
 
@@ -18,7 +18,7 @@ class PED(DataType):
             self.data_format["genotype"] = (6, StringCol(self.geno_length))
         else:
             self.data_format["genotype"] = (6, StringCol(4))
-        DataType.__init__(self, p, "ped")
+        DataType.__init__(self, p, "ped", verbose)
 
     def __str__(self):
         return self.file_name
