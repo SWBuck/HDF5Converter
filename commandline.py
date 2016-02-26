@@ -6,7 +6,7 @@ import argparse
 
 def initialize_graphics():
     """ Prints introduction graphics """
-    print "###################################################################"
+    print "\n###################################################################"
     print "###                                                            ####"
     print "###                      HDF5 Converter                        ####"
     print "###                                                            ####"
