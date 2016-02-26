@@ -42,7 +42,6 @@ class PED(DataType):
             for r in table:
                 s = ""
                 geno = " ".join(r["genotype"])
-                print geno
                 for each in a:
                     if not each[0] == "genotype":
                         s += r[each[0]]+"\t"
