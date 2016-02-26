@@ -51,9 +51,9 @@ class Convert:
             elif f.lower().endswith(".ped"):
                 if "ped" not in dtypes:
                     dtypes["ped"] = []
-                    dtypes["ped"].append(PED(input_directory+f), verbose=verbose)
+                    dtypes["ped"].append(PED(input_directory+f, verbose=verbose))
                 else:
-                    dtypes["ped"].append(PED(input_directory+f), verbose=verbose)
+                    dtypes["ped"].append(PED(input_directory+f, verbose=verbose))
         h5_file = open_file(output_name+".h5", mode="w", title=output_name)
         for key in dtypes:
             for a in dtypes[key]:
