@@ -5,3 +5,17 @@ Testing using Syngenta data resulted in a file 52% of the original size
 (PED + MAP file sizes compared to .h5 output file size)
 
 1.614GB -> 0.849GB
+
+
+###Usage
+####To HDF5
+convert.py -v to --dir Data --output H5FileName
+-v / --verbosity is optional and triggers verbose mode
+-d / --dir is the directory containing files to convert to a HDF5 file
+-o --output is the name to save the .h5 file as, the extension will be added (i.e. don't use H5FileName.h5)
+
+####From HDF5
+converty.py -v from --hdf H5FileName --dir OutputDirectory
+-v / --verbosity is optional and triggers verbose mode
+-i / --hdf is the H5 file (with extension) to convert back to numerous files
+-d / --dir is the directory to save the output to
