@@ -19,3 +19,9 @@ converty.py -v from --hdf H5FileName --dir OutputDirectory
 -v / --verbosity is optional and triggers verbose mode
 -i / --hdf is the H5 file (with extension) to convert back to numerous files
 -d / --dir is the directory to save the output to
+
+
+###Contributing
+####Adding DataTypes
+The PED.py and MAP.py files located in the DataTypes directory should be used as reference.
+The data_format represents how the data is organized within your files after it is split. By default, the split is made using whitespace. If you have data formatted in another way, you will have to override the read function. The data_format is a dictionary where the key is the column name, the first value of the tuple is the location of the data point within the split line, and the second value of the tuple is the DataType used by PyTables to instantiate the table. 
