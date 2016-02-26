@@ -3,6 +3,12 @@ from os import path
 
 class DataType:
     def __init__(self, file_path, t):
+        """
+        Creates a new instance of DataType.
+
+        :param file_path: Full path to a specific file
+        :param t: Type of file (i.e. MAP / PED)
+        """
         self.input = file_path
         head, tail = path.split(self.input)
         self.file_name = tail
@@ -10,12 +16,22 @@ class DataType:
         self.type = t
 
     def read(self):
+        """
+        Generator to open file and yield each line after it is formatted.
+
+        :return: Each line formatted into a dictionary
+        """
         with open(self.input) as f:
             for line in f:
                 line = line.rstrip().split()
                 yield self.formatted_line(line)
 
     def write(self, table):
+        """
+        Writes to a file from a HDF5 table using the data_format found in the child classes.
+
+        :param table: The table containing the data
+        """
         f = []
         for k in self.data_format:
             f.append((k, self.data_format[k][0]))
@@ -29,14 +45,25 @@ class DataType:
                 f.write(s+"\n")
 
     def formatted_line(self, split_line):
+        """
+        Returns a dictionary using a list of the line elements and matching them to their columns depending on
+        the given data format.
+
+        :param split_line: the line separated into different data points.
+        :return: dictionary matching each data point to their respective column.
+        """
         line_dict = {}
         for k in self.data_format.keys():
             data = split_line[self.data_format[k][0]]
             line_dict[k] = data
-        print line_dict
         return line_dict
 
     def create_table(self, h5_file):
+        """
+        Creates and populates a HDF5 table based on the file type. Writes to this table using the given data format.
+
+        :param h5_file: file to add the table to
+        """
         group_exists = False
         for x in h5_file:
             if x._v_name == self.file_prefix:
