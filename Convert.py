@@ -39,25 +39,27 @@ class Convert:
         input_directory = self.args["dir"]
         output_name = self.args["output"]
         verbose = self.args["verbose"]
+        collength = self.args["collength"]
         files = listdir(input_directory)
         dtypes = {}
         for f in files:
             if f.lower().endswith(".map"):
                 if "map" not in dtypes:
                     dtypes["map"] = []
-                    dtypes["map"].append(MAP(input_directory+f, verbose))
+                    dtypes["map"].append(MAP(input_directory+f, collength, verbose))
                 else:
-                    dtypes["map"].append(MAP(input_directory+f, verbose))
+                    dtypes["map"].append(MAP(input_directory+f,collength, verbose))
             elif f.lower().endswith(".ped"):
                 if "ped" not in dtypes:
                     dtypes["ped"] = []
-                    dtypes["ped"].append(PED(input_directory+f, verbose=verbose))
+                    dtypes["ped"].append(PED(input_directory+f, collength, verbose=verbose))
                 else:
-                    dtypes["ped"].append(PED(input_directory+f, verbose=verbose))
+                    dtypes["ped"].append(PED(input_directory+f, collength, verbose=verbose))
         h5_file = open_file(output_name+".h5", mode="w", title=output_name)
         for key in dtypes:
             for a in dtypes[key]:
                 a.create_table(h5_file)
+        print "Closing H5 file:", output_name
         h5_file.close()
 
     def convert_from(self):

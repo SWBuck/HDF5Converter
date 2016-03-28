@@ -59,6 +59,7 @@ def print_arguments(args_dict):
     if args_dict["mode"] == "to":
         print "The input directory is specified as", args_dict["dir"]
         print "The output file name is specified as", args_dict["output"]+".h5"
+        print "Column length is set to", args_dict["collength"]
     elif args_dict["mode"] == "from":
         print "The input HDF5 is specified as", args_dict["hdf"]
         print "The output directory is specified as", args_dict["dir"]
@@ -73,6 +74,9 @@ def add_convert_to_hdf(sp):
     to_parser = sp.add_parser("to", help="Convert files to a single HDF5 file")
     to_parser.add_argument("-d", "--dir", type=str, required=True,
                            help="Directory containing files to convert to HDF5")
+    to_parser.add_argument("-c", "--collength", type=int, required=False, default=16,
+                           help="How many characters per column. The length of the longest column excluding the last"
+                                "column of the PED file. Default is set to 16 characters")
     to_parser.add_argument("-o", "--output", type=str, required=True, help="HDF5 output file prefix")
 
 

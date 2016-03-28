@@ -3,7 +3,7 @@ from tables import StringCol
 
 
 class PED(DataType):
-    def __init__(self, p, writing=False, verbose=False):
+    def __init__(self, p, collength, writing=False, verbose=False):
         """
         Instantiates a PED object corresponding to MAP files.
 
@@ -11,8 +11,9 @@ class PED(DataType):
         :param p: The full file path.
         """
         self.input = p
-        self.data_format = {"family": (0, StringCol(16)), "sample": (1, StringCol(16)), "paternal": (2, StringCol(16)),
-                            "maternal": (3, StringCol(16)), "sex": (4, StringCol(4)), "affection": (5, StringCol(16))}
+        self.data_format = {"family": (0, StringCol(collength)), "sample": (1, StringCol(collength)),
+                            "paternal": (2, StringCol(collength)),"maternal": (3, StringCol(collength)),
+                            "sex": (4, StringCol(collength)), "affection": (5, StringCol(collength))}
         if not writing:
             self.geno_length = self.get_geno_length()
             self.data_format["genotype"] = (6, StringCol(self.geno_length))

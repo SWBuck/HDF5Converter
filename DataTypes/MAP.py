@@ -3,7 +3,7 @@ from tables import StringCol
 
 
 class MAP(DataType):
-    def __init__(self, p, verbose=False):
+    def __init__(self, p, collength, verbose=False):
         """
         Instantiates a MAP object corresponding to MAP files.
 
@@ -12,8 +12,9 @@ class MAP(DataType):
         when the line is split and the second part represents the datatype to use within the table.
         :param p: The full file path
         """
-        self.data_format = {"chromosome": (0, StringCol(16)), "identifier": (1, StringCol(16)),
-                            "distance": (2, StringCol(16)), "position": (3, StringCol(16))}
+        self.data_format = {"chromosome": (0, StringCol(collength)), "identifier": (1, StringCol(collength)),
+                            "distance": (2, StringCol(collength)), "position": (3, StringCol(collength))}
+        print "L:", self.data_format["chromosome"][1]
         DataType.__init__(self, p, "map", verbose)
 
     def __str__(self):
