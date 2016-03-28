@@ -3,7 +3,7 @@ from tables import StringCol
 
 
 class MAP(DataType):
-    def __init__(self, p, collength, verbose=False):
+    def __init__(self, p, collength=16, verbose=False):
         """
         Instantiates a MAP object corresponding to MAP files.
 

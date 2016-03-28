@@ -3,7 +3,7 @@ from tables import StringCol
 
 
 class PED(DataType):
-    def __init__(self, p, collength, writing=False, verbose=False):
+    def __init__(self, p, collength=16, writing=False, verbose=False):
         """
         Instantiates a PED object corresponding to MAP files.
 
@@ -12,7 +12,7 @@ class PED(DataType):
         """
         self.input = p
         self.data_format = {"family": (0, StringCol(collength)), "sample": (1, StringCol(collength)),
-                            "paternal": (2, StringCol(collength)),"maternal": (3, StringCol(collength)),
+                            "paternal": (2, StringCol(collength)), "maternal": (3, StringCol(collength)),
                             "sex": (4, StringCol(collength)), "affection": (5, StringCol(collength))}
         if not writing:
             self.geno_length = self.get_geno_length()

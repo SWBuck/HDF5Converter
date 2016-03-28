@@ -46,15 +46,15 @@ class Convert:
             if f.lower().endswith(".map"):
                 if "map" not in dtypes:
                     dtypes["map"] = []
-                    dtypes["map"].append(MAP(input_directory+f, collength, verbose))
+                    dtypes["map"].append(MAP(input_directory+f, collength=collength, verbose=verbose))
                 else:
-                    dtypes["map"].append(MAP(input_directory+f,collength, verbose))
+                    dtypes["map"].append(MAP(input_directory+f,collength=collength, verbose=verbose))
             elif f.lower().endswith(".ped"):
                 if "ped" not in dtypes:
                     dtypes["ped"] = []
-                    dtypes["ped"].append(PED(input_directory+f, collength, verbose=verbose))
+                    dtypes["ped"].append(PED(input_directory+f, collength=collength, verbose=verbose))
                 else:
-                    dtypes["ped"].append(PED(input_directory+f, collength, verbose=verbose))
+                    dtypes["ped"].append(PED(input_directory+f, collength=collength, verbose=verbose))
         h5_file = open_file(output_name+".h5", mode="w", title=output_name)
         for key in dtypes:
             for a in dtypes[key]:
