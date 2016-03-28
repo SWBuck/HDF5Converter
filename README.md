@@ -12,7 +12,8 @@ Testing using Syngenta data resulted in a file 52% of the original size
 convert.py -v to --dir Data --output H5FileName
 -v / --verbosity is optional and triggers verbose mode
 -d / --dir is the directory containing files to convert to a HDF5 file
--o --output is the name to save the .h5 file as, the extension will be added (i.e. don't use H5FileName.h5)
+-o /  --output is the name to save the .h5 file as, the extension will be added (i.e. don't use H5FileName.h5)
+-c / --collength is the length of each column (excluding the last column of the PED file). Default is set to 16 characters per cell
 
 ####From HDF5
 converty.py -v from --hdf H5FileName --dir OutputDirectory
