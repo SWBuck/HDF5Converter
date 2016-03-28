@@ -14,7 +14,6 @@ class MAP(DataType):
         """
         self.data_format = {"chromosome": (0, StringCol(collength)), "identifier": (1, StringCol(collength)),
                             "distance": (2, StringCol(collength)), "position": (3, StringCol(collength))}
-        print "L:", self.data_format["chromosome"][1]
         DataType.__init__(self, p, "map", verbose)
 
     def __str__(self):
